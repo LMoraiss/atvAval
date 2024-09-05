@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-const port = 3000
+const port = 3000;
 
 app.use(express.json());
 
 let estudantes = [];
 let livros = [];
-let aluguel = [];
+let alugueis = [];
 
 app.post("/estudantes", (req, res) => {
     const {id, nome, matricula, curso, ano } = req.body
@@ -25,3 +25,18 @@ app.post("/livros", (req, res) => {
     livros.push(livro);
     res.status(201).json(livro)
 })
+
+app.get ("/livros", (req, res) => {
+    res.json(livros);
+});
+
+app.post("/alugueis", (req, res) => {
+    const {id, livro_id, estudante_id, data_aluguel, data_devolução} = req.body
+    const aluguel = {id: alugueis.length +1, livro_id, estudante_id, data_aluguel, data_devolução};
+    algueis.push(aluguel);
+    res.status(201).json(aluguel);
+});
+
+app.get("/alugueis", (req, res) => {
+    res.json(alugueis);
+});
